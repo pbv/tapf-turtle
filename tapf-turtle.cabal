@@ -1,0 +1,33 @@
+name:                tapf-turtle
+version:             0.1.0.0
+synopsis:            A simple DSEL for Turtle graphics 
+homepage:            https://github.com/pbv/tapf-turtle
+license:             MIT
+license-file:        LICENSE
+author:              Pedro Vasconcelos
+maintainer:          pbv@dcc.fc.up.pt
+copyright:           2017 Pedro Vasconcelos
+category:            Graphics
+build-type:          Simple
+cabal-version:       >=1.10
+extra-source-files:  README.md
+
+library
+  hs-source-dirs:     src
+  exposed-modules:    TAPF.Turtle
+  other-modules:      TAPF.Turtle.Deep
+                      TAPF.Turtle.Shallow
+  build-depends:      base >= 4.7 && < 5, mtl, HGL
+  default-language:   Haskell2010
+
+executable turtle-demo
+  hs-source-dirs:      demo
+  main-is:             Main.hs
+  default-language:    Haskell2010
+  build-depends:       base >= 4.7 && < 5,
+                       tapf-turtle
+  default-language:    Haskell2010
+
+source-repository head
+  type:     git
+  location: https://github.com/pbv/tapf-turtle.git
