@@ -10,9 +10,10 @@ module TAPF.Turtle
        ) where
 
 import Graphics.HGL (Point, Size)
-import TAPF.Turtle.Deep as Impl
--- a simpler "shallow" implementation:
+
 -- import TAPF.Turtle.Shallow as Impl
+-- import TAPF.Turtle.Deep as Impl
+import TAPF.Turtle.ShallowIORefs as Impl
 
 -- * derived operations
 -- | turn left

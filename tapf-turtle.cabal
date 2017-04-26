@@ -17,6 +17,7 @@ library
   exposed-modules:    TAPF.Turtle
   other-modules:      TAPF.Turtle.Deep
                       TAPF.Turtle.Shallow
+                      TAPF.Turtle.ShallowIORefs
   build-depends:      base >= 4.7 && < 5, mtl, HGL
   default-language:   Haskell2010
 
