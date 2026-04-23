@@ -1,3 +1,4 @@
+cabal-version:       3.0
 name:                tapf-turtle
 version:             0.1.0.0
 synopsis:            A simple DSEL for Turtle graphics 
@@ -9,7 +10,6 @@ maintainer:          pbv@dcc.fc.up.pt
 copyright:           2017 Pedro Vasconcelos
 category:            Graphics
 build-type:          Simple
-cabal-version:       >=1.10
 extra-source-files:  README.md
 
 library

@@ -11,9 +11,9 @@ module TAPF.Turtle
 
 import Graphics.HGL (Point, Size)
 
--- import TAPF.Turtle.Shallow as Impl
+import TAPF.Turtle.Shallow as Impl
 -- import TAPF.Turtle.Deep as Impl
-import TAPF.Turtle.ShallowIORefs as Impl
+-- import TAPF.Turtle.ShallowIORefs as Impl
 
 -- * derived operations
 -- | turn left
@@ -23,6 +23,3 @@ left ang = right (-ang)
 -- | move backwards
 backward :: Double -> Turtle ()
 backward dist = forward (-dist)
-
-
-

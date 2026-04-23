@@ -23,7 +23,7 @@ import Graphics.HGL
 
 -- | the Turtle monad; 
 -- functions from mutable state to IO actions 
-newtype Turtle a = Turtle { unTurtle :: TurtleStateRef -> IO a }
+newtype Turtle a = Turtle { unTurtle :: IORef TurtleState -> IO a }
                    deriving (Functor)
 
 instance Applicative Turtle where
@@ -42,9 +42,6 @@ data TurtleState
                 , _heading :: Double -- degrees
                 , _window :: Window  -- from Graphics.HGL
                 }
-
--- state reference (for mutable state)
-type TurtleStateRef = IORef TurtleState
 
 
 runTurtle :: Turtle a -> Size -> IO ()

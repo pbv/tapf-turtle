@@ -12,7 +12,7 @@ module TAPF.Turtle.Deep
          -- * primitive turtle commands
        , forward
        , right
-       , heading 
+       , heading
        , output
        ) where
 
@@ -40,7 +40,6 @@ instance Show (a -> b) where
   http://www.haskellforall.com/2012/06/you-could-have-invented-free-monads.htm
 -}
 instance Monad Turtle where
-  return = Return 
   Forward dist k  >>= k' = Forward dist (k >>= k')
   TurnRight ang k >>= k' = TurnRight ang (k >>= k')
   Heading k       >>= k' = Heading (\h -> (k h >>= k'))
@@ -50,7 +49,7 @@ instance Monad Turtle where
 
 -- applicative instance for Turtle programs
 instance Applicative Turtle where
-  pure = return
+  pure = Return
   a <*> b = do {f <- a; x <- b; return (f x)}
 
 
@@ -61,7 +60,7 @@ right ang    = TurnRight ang (Return ())
 
 -- | get current heading
 heading      :: Turtle Double
-heading      = Heading Return 
+heading      = Heading Return
 
 -- | output a string message
 output :: String -> Turtle ()
@@ -73,7 +72,7 @@ data TurtleState
   = TurtleState { _position :: Point
                 , _heading :: Double  -- in degrees
                 }
-  
+
 -- initial  state;
 -- position turtle in the center of window, heading east
 initialTurtle :: Size -> TurtleState
@@ -83,16 +82,16 @@ initialTurtle (width, height)
                 }
 
 -- | run function in a graphic window
--- 
+--
 runTurtle :: Turtle a -> Size -> IO ()
 runTurtle m size =
-    runGraphics $ 
+    runGraphics $
     withWindow "Turtle Graphics" size $ \w -> do
       -- get window *actual* dimensions
-      (_, sz) <- getWindowRect w  
+      (_, sz) <- getWindowRect w
       runStateT (interpret w m) (initialTurtle sz)
       -- wait for a keypress before closing the window
-      getKey w 
+      getKey w
       return ()
 
 -- | interpret in state transformer over IO
@@ -133,7 +132,7 @@ simulate (Forward dist next) = do
   put s { _position= dest }
   tell ("line " ++ show start ++ " to " ++ show dest ++ "\n")
   simulate next
-       
+
 simulate (TurnRight ang next) = do
   modify $  \s -> s { _heading = _heading s + ang }
   simulate next
@@ -154,9 +153,8 @@ advance :: Point -> Double -> Double -> Point
 advance (x,y) angle dist = (x',y')
   where x' = x + round (dist * cos angle)
         y' = y + round (dist * sin angle)
-  
+
 
 -- | convert degrees to radians
 radians :: Double -> Double
 radians = (pi/180*)
-
